@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 보기</title>
+    <!-- CSS 파일들 추가 -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <!-- <link rel="stylesheet" href="/css/mypage.css"> -->
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/write.css">
+    <!-- Font Awesome 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div layout:fragment="content" id="contents">
+        <div id="left">
+        </div>
+        <div id="main">
+            <h1 th:text="${board.board_name}"></h1>
+            
+            <br><br>
+            
+            <form name="writeForm" action="/write" method="post" enctype="multipart/form-data" class="write_form">
+                <table>
+                    <tr>
+                        <td>글제목</td>
+                        <td><input type="text" name="title"></td>
+                    </tr>
+                    <tr>
+                        <td>작성자</td>
+                        <td><input type="text" name="userid" th:value="${#authentication.name}" readonly="readonly"></td>
+                    </tr>
+                    <tr>
+                        <td>내용</td>
+                        <td><textarea name="content"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>첨부파일</td>
+                        <td>
+                            <input type="button" value="파일추가" onclick="addFile(this)">
+                        </td>
+                    </tr>
+                    <!-- 버튼을 tr 태그로 작성 -->
+                    <tr class="tr_button_menu_01">
+                        <td colspan="2" style="text-align: center;"> <!-- colspan="2"로 테이블 전체 너비 사용 -->
+                            <input type="hidden" name="board_no" th:value="${board.board_no}">
+                            <input type="submit" value="저장" style="margin-right: 10px;">
+                            <input type="reset" value="다시쓰기" style="margin-right: 10px;">
+                            <input type="button" value="글목록" 
+                                   th:onclick="|location.href='/board/' + ${board.board_no} + '/' + (${page} != null ? ${page} : 1)|">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+		<div id="right"></div>
+    </div>
+</body>
+</html>

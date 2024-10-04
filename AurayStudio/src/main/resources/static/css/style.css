@@ -1,0 +1,308 @@
+h2 {
+	width: auto;
+	/* margin-left: 74px; */
+	/* margin-left: 65px; */
+	text-align: center;
+}
+
+/* 공통 스타일 */
+/* * {
+	text-align: center ;
+} */
+
+main {
+	/* display: flex; */
+	/* justify-content: center; */
+	align-items: center;
+	margin: 0;
+	padding: 0;
+}
+
+.description {
+	display: none; /* 초기에는 숨겨짐 */
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+	z-index: 10;
+}
+
+.image-container {
+	position: relative;
+	display: inline-block;
+	margin: 10px;
+}
+
+.image-container:hover .description {
+	display: block; /* 호버 시 설명 표시 */
+}
+
+.product-detail {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: row;
+}
+
+.product-details {
+	display: flex;
+	justify-content: center; /* 수평 중앙 정렬 */
+	flex-direction: row;
+	margin: auto;
+	margin-top: 15px;
+	padding: 10px;
+	border: 1px solid #ddd;
+	background-color: #f9f9f9;
+	max-width: 65%;
+}
+
+.product-details img {
+	/* max-width: 600px; 이미지 크기를 적절히 조절하세요
+	max-height: 600px; */
+	width: 600px; /* 이미지 크기를 적절히 조절하세요 */
+	height: 600px;
+	margin-right: 50px; /* 이미지와 텍스트 사이 간격 조정 */
+	align-items: center;
+}
+
+.product-details .text-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.product-details .innergate_IApro {
+	margin-bottom: 10px; /* 각 p 태그 간 간격 조정 */
+}
+
+.text-container h3 {
+	font-size: 25px;
+	margin: 0px;
+}
+
+.text-container span {
+	font-size: 15px;
+	margin: 0px;
+	font-weight: lighter;
+}
+
+/* .custom-line {
+	display: block;
+	width: 100%;  
+	height: 1px;
+	background-color: #000; 선 색상
+	margin-bottom: 30px; 선과 텍스트 사이의 간격
+	margin-top: 10px; 선과 텍스트 사이의 간격
+} */
+
+.share-buttons {
+	margin-top: 20px;
+}
+
+.share-buttons a {
+	margin: 0 10px;
+	display: inline-block;
+}
+
+.share-buttons img {
+	width: 32px;
+	height: 32px;
+}
+
+
+/* 추가된 스타일 */
+.main-content {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+	flex-direction: column;
+}
+
+
+/* 사이드바 스타일 */
+        .sidebar {
+        	margin-left: 5% ;
+            width: 10%; /* 사이드바 너비 설정 */
+            background-color: #ffffff;
+            padding: 10px;
+            position: fixed; /* 고정 위치 */
+            top: 0; /* 상단에 고정 */
+            left: 0; /* 좌측에 고정 */
+            height: auto; /* 전체 화면 높이 */
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            margin-top: 3.5%;
+            
+        }
+        
+.sidebar ul {
+	list-style-type: none; /* 목록 앞의 기본 점(dot) 또는 숫자를 제거 */
+	padding-left: 12px; /* 기본 패딩 제거 */
+	margin-top: revert ;
+}
+
+.sidebar ul li {
+	margin-bottom: 10px; /* 항목 간 간격을 조정하고 싶을 경우 */
+	width: 150px;
+}
+
+.sidebar ul li a {
+	text-decoration: none; /* 링크의 밑줄 제거 */
+	color: #333; /* 링크 색상 설정 */
+}
+
+.sidebar ul li a:hover {
+	color: #007BFF; /* 링크에 마우스를 올렸을 때 색상 변경 */
+}
+
+.content-area {
+	width: 80%; /* 콘텐츠 영역의 너비를 80%로 설정 */
+	padding: 20px;
+}
+
+.products-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start; 
+	margin-left: 20%;
+	margin-top: -2%;
+	/* justify-content: center; */
+}
+
+.door-item {
+	/* width: 23%; 4개씩 한 줄에 맞추기 위해 각 항목의 너비를 23%로 설정 */
+	background-color: #f9f9f9;
+	margin-bottom: 20px;
+	padding-top: 10px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+	width: 370px;
+	
+}
+
+.innergate-field {
+	margin: 10px;
+}
+
+.door-item img {
+	width: 350px;
+	height: 350px;
+	/* 	width: 100%;
+	height: auto; */
+}
+
+.inquire-button {
+	display: inline-block;
+	/* position: fixed; */
+	padding: 10px 20px;
+	background-color: #a7a7a7;
+	color: #ffffff;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 16px;
+	width: 555px;
+	margin-bottom: -10px;
+}
+
+.inquire-button:hover {
+	background-color: #a7a7a7;
+}
+
+.scrollable-content {
+	max-height: 300px; /* 필요한 높이로 설정 */
+	/* overflow-y: auto; 수직 스크롤바를 추가 */
+	padding-right: 10px; /* 스크롤바가 텍스트를 가리지 않도록 패딩 추가 */
+}
+
+.table_sty {
+	text-align: center; /* 텍스트를 수평 중앙 정렬 */
+	margin: 0 auto; /* 테이블 자체를 페이지 중앙으로 정렬 */
+	border-collapse: collapse; /* 테이블 경계선이 겹치지 않도록 설정 */
+}
+
+.table_sty th, .table_sty td {
+	padding: 10px; /* 셀 안의 텍스트에 패딩 추가 */
+	border: 1px solid #ddd; /* 테이블 셀에 테두리 추가 */
+}
+
+.center-text {
+	text-align: center;
+}
+
+.span bold-text {
+	font-weight: bold;
+}
+
+.innergate_pro {
+	height: -webkit-fill-available;
+}
+
+.small-text {
+	margin: 0;
+	font-size: 25px;
+	font-weight: 700;
+}
+
+/* 지도 크기 지정 */
+#map {
+	height: 600px;
+	width: 600px;
+}
+
+#searchBar {
+	padding: 10px;
+}
+
+#searchInput {
+	width: 50%;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+/* 지도 크기 지정 */
+#map {
+	width: 100%;
+	height: 100%; /* 지도의 높이를 테이블 셀 높이에 맞게 설정 */
+}
+
+/* table {
+	width: 100%; 테이블 너비를 전체 페이지 너비로 설정
+	height: 500px; 테이블 전체 높이를 고정
+	table-layout: fixed; 셀 너비를 고정 비율로 설정
+} */
+td {
+	padding: 0; /* 셀 내 여백 제거 */
+	vertical-align: top; /* 셀 안의 내용이 위쪽에 붙도록 설정 */
+}
+
+#searchBar {
+	padding: 10px;
+}
+
+#searchInput {
+	width: 90%;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+/* style.css 파일 */
+.menu {
+	list-style-type: none;
+	padding: 0;
+	display: flex; /* 가로로 정렬 */
+	/* justify-content: space-around; */ /* 항목을 일정 간격으로 정렬 */
+}
+
+/* .menu li {
+    margin-right: 20px;
+} */
+.menu li a {
+	text-decoration: none;
+	color: #333;
+	/*padding: 10px; */
+	display: block;
+}
+
+.menu li a:hover {
+	color: #000;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Board</title>
+    <link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<!-- <link rel="stylesheet" href="/css/mypage.css"> -->
+	<link rel="stylesheet" href="/css/nav.css">
+	<link rel="stylesheet" href="/css/board.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div layout:fragment="content" id="contents">
+        <div id="left"></div>
+        <div id="main" class="align-center">
+            <h1 th:text="${board.board_name}"></h1>
+            
+            <div class="action-search-container">
+                 <div class="back-button">
+			        <!-- 돌아가기 아이콘 추가 -->
+			        <i class="fas fa-arrow-left" onclick="window.location.href='http://192.168.1.17:8888/mypage'" title="뒤로 가기"></i>
+			    </div>
+			    
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			    
+			    <div sec:authorize="isAuthenticated()" th:if="${board_no != 2}" class="div_search_menu_01">
+						<i class="fas fa-pencil-alt" th:onclick="|location.href='/write/' + ${board_no}|" title="글쓰기"></i>
+	                    <!-- <input type="button" class="action-button" value="글쓰기" th:onclick="|location.href='/write/' + ${board_no}|"> -->
+	                </div>
+	                
+	                <div th:if="${#authorization.expression('hasRole(''ADMIN'')') and board_no == 2}" class="div_search_menu_02">
+						<i class="fas fa-pencil-alt" th:onclick="|location.href='/write/' + ${board_no}|" title="글쓰기"></i>
+	                   <!--  <input type="button" class="action-button" value="글쓰기" th:onclick="|location.href='/write/' + ${board_no}|"> -->
+	                </div>
+                
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th class="size-50">글번호</th>
+                        <th class="size-400">글제목</th>
+                        <th class="size-60">작성자</th>
+                        <th class="size-100">작성일</th>
+                        <th class="size-50">조회수</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dto : ${list}">
+                        <td class="align-center" th:text="${dto.post_no}"></td>
+                        <td class="padding-left-5">
+                            <a th:text="${dto.title}" th:href="@{'/view/' + ${dto.post_no}}"></a>
+                        </td>
+                        <td class="align-center" th:text="${dto.userid}"></td>
+                        <td class="align-center" th:text="${dto.create_date}"></td>
+                        <td class="align-center" th:text="${dto.hit_cnt}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <br>
+            
+            <div class="pagination">
+                <ul class="page">
+                    <li th:if="${page.existPrevPage}" class="prev">
+                        <a class="page_link" th:href="@{'/board/' + ${board_no} + '/' + ${page.startPage - 1} + '?keyword=' + ${page.keyword}}">이전</a>
+                    </li>
+                    <li th:each="number : ${#numbers.sequence(page.startPage, page.endPage)}" class="page_item">
+                        <a class="page_link_bold" th:if="${page.page == number}" 
+                           th:href="@{'/board/' + ${board_no} + '/' + ${number} + '?keyword=' + ${page.keyword}}"
+                           th:text="${number}"></a>
+                        <a class="page_link" th:if="${page.page != number}" 
+                           th:href="@{'/board/' + ${board_no} + '/' + ${number} + '?keyword=' + ${page.keyword}}"
+                           th:text="${number}"></a>
+                    </li>
+                    <li th:if="${page.existNextPage}" class="next">
+                        <a class="page_link" th:href="@{'/board/' + ${board_no} + '/' + ${page.endPage + 1} + '?keyword=' + ${page.keyword}}">다음</a>  
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="right"></div>
+    </div>
+    <script>
+	    function search(button) {
+	        var keyword = document.getElementById("keyword").value;
+	        var boardNo = button.getAttribute("data-boardno");
+	
+	        if (!keyword) {
+	            alert("검색어를 입력해주세요.");
+	            return;
+	        }
+	
+	        // 검색 결과 페이지로 이동
+	        window.location.href = `/board/${boardNo}/1?keyword=${encodeURIComponent(keyword)}`;
+	    }
+	</script>
+	    
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 보기</title>
+    <!-- CSS 파일들 추가 -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <!-- <link rel="stylesheet" href="/css/mypage.css"> -->
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/view.css">
+    <!-- Font Awesome 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div layout:fragment="content" id="contents">
+        <div id="left"></div>
+        <div id="main">
+            <h1 th:text="${board.board_name}"></h1>
+            
+            <br><br>
+            
+            <form name="viewForm">
+                <table>
+                    <tr>
+                        <th>글제목</th>
+                        <td th:text="${post.title}"></td>
+                        
+                    </tr> 
+                    <tr>
+                        <th>작성자</th>
+                        <!-- <td th:text="${post.userid}"></td> -->
+                        <td><input type="text" name="userid" th:value="${post.userid}" readonly="readonly"></td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td><textarea name="content" th:text="${post.content}" readonly></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>첨부파일</th>
+                        <td>
+                            <p th:if="${file_list != null}" th:each="file : ${file_list}">
+                                <a th:text="${file.org_file_name}" th:href="@{'/download/' + ${file.id}}"></a>
+                            </p>
+                        </td>
+                    </tr>
+                     <tr class="tr_button_menu_01">
+                        <td colspan="2" style="text-align: center;"> <!-- colspan="2"로 테이블 전체 너비 사용 -->
+                            <input type="hidden" name="board_no" th:value="${board.board_no}">
+                            <!-- 현재 사용자가 작성자와 같은 경우에만 수정 및 삭제 버튼 표시 -->
+                            <span th:if="${#authentication.name == post.userid}">
+                                <!-- <input type="button" value="글수정" th:onclick="|location.href='/edit/' + ${post.post_no} + '?title=' + ${post.title} + '&content=' + ${post.content}|"> -->
+                                <input type="button" value="글수정"
+                                        th:data-post-no="${post.post_no}"
+                                        th:data-post-title="${post.title}"
+                                        th:data-post-content="${post.content}"
+                                        onclick="editPost(this)">
+                                <input type="button" value="글삭제" th:onclick="|location.href='/delete/' + ${post.post_no}|">
+                            </span>
+                            <input type="button" value="글목록" 
+                                   th:onclick="|location.href='/board/' + ${board.board_no} + '/' + (${page} != null ? ${page} : 1)|">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+            <form name="reply" action="/reply" method="post">
+                <table>
+                    <tr sec:authorize="isAuthenticated()">
+                        <th>댓글</th>
+                        <td>
+                            <input type="text" name="comment">
+                            <input type="hidden" name="post_no" th:value="${post.post_no}">
+                            <input type="hidden" name="userid" th:value="${#authentication.name}">
+                        </td>
+                        <td><input type="submit" value="전송"></td>
+                    </tr>
+                    <tr th:each="reply : ${reply_list}">
+                        <!-- <td th:text="${reply.userid}"></td> -->
+                        <td>
+					        <span th:text="${reply.userid}"></span>
+					        <!-- 작성자가 관리자인 경우 'A' 표시 -->
+					    </td>
+                        <td th:text="${reply.comment}"></td>
+                        <td th:text="${reply.create_date}"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+		<div id="right"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title th:text="${tile.y_name}">제품명</title>
+			<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" th:href="@{/css/KA_product.css}">
+	<script th:src="@{https://code.jquery.com/jquery-latest.min.js}"></script>
+	</head>
+	<body>
+		<div th:replace="fragments/nav :: nav"></div>
+			<div class="main-content">
+		<aside class="sidebar">
+			<h2>타일</h2>
+			<span class="custom-line"></span>
+			<ul>
+				<li><a href="/product/tile/tile">타일</a></li>
+			</ul>
+		</aside>
+
+		<main>
+			<section class="product-details">
+				<img th:src="@{'/product/tile/downloadImg/'+${tile.y_no}}" alt="제품 이미지">
+				<div class="text-container">
+					<p class="innergate_IApro">
+						<span th:text="${tile.pro_kind}"></span>&nbsp;|&nbsp; <span
+							th:text="${tile.y_no}"></span>
+					</p>
+					<p class="small-text" th:text="${tile.y_name}"></p>
+					<br>
+					<p class="innergate_IApro">
+						<span th:text="${tile.style}"></span>
+					</p>
+					<span class="custom-line"></span>
+					<div class="scrollable-content">
+					<br>
+					<br>
+						<p class="innergate_IApro">
+							<span th:text="${tile.content}"></span>
+						</p>
+					<br>
+					<br>
+					</div>
+					<p class="innergate_pro"></p>
+	
+					<!-- 상담 신청 버튼 -->
+					<p class="innergate_IApro">
+						<a href="/inquire" class="inquire-button">상담신청</a>
+					</p>
+				</div>
+			</section>
+		</main>
+		</div>
+	</body>
+</html>

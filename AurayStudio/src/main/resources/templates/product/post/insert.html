@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Auray Studio</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
+</head>
+<body>
+    <h1>Auray Studio 중문 게시물 추가</h1>
+    <br>
+    <a th:href="@{/product/innergate/jungmun3}">돌아가기</a>
+
+    <form th:action="@{/product/post/insert}" th:object="${innergate}" method="post" enctype="multipart/form-data">
+        <table class="table_sty">
+            <tr>
+                <td><label for="y_no">제품코드</label></td>
+                <td><input type="text" id="y_no" th:field="*{y_no}" readonly class="center-text"></td>
+            </tr>
+            <tr>
+                <td><label for="pro_kind">중분류</label></td>
+                <td><input type="text" id="pro_kind" th:field="*{pro_kind}" required class="center-text"></td>
+            </tr>
+            <tr>
+                <td><label for="i_name">제품명</label></td>
+                <td><input type="text" id="i_name" th:field="*{i_name}" required class="center-text"></td>
+            </tr>
+            <tr>
+                <td><label for="style">스타일</label></td>
+                <td><select id="style" th:field="*{style}" required>
+                        <option value="" selected disabled>제품스타일을 선택하세요 !</option>
+                        <option value="Modern">Modern</option>
+                        <option value="Classic">Classic</option>
+                        <option value="Unique">Unique</option>
+                        <option value="Natural">Natural</option>
+                        <option value="Minimal">Minimal</option>
+                        <option value="Retro">Retro</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td><label for="content">내용</label></td>
+                <td><textarea id="content" th:field="*{content}" required class="center-text" rows="7" cols="22"></textarea></td>
+            </tr>
+            <tr>
+                <td><label for="y_img">이미지</label></td>
+                <td><input type="file" id="y_img" name="y_img" required class="center-text"></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <button type="submit">등록하기</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

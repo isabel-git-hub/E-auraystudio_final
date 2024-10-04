@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${echo.y_name}">제품명</title>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" th:href="@{/css/KA_product.css}">
+	<script th:src="@{https://code.jquery.com/jquery-latest.min.js}"></script>
+</head>
+<body>
+	<div th:replace="fragments/nav :: nav"></div>
+
+	<div class="container">
+		<aside class="sidebar">
+			<h2>부엌</h2>
+			<span class="custom-line"></span>
+			<ul>
+				<li><a href="/product/kitchen/echo">인조대리석</a></li>
+				<li><a href="/product/kitchen/vista">이스톤</a></li>
+				<li><a href="/product/kitchen/signature">포세린</a></li>
+				<li><a href="/product/kitchen/faucet">수전</a></li>
+				<li><a href="/product/kitchen/sink">싱크볼</a></li>
+				<li><a href="/product/kitchen/pantry">팬트리장,인출망장</a></li>
+				<li><a href="/product/kitchen/hood">후드</a></li>
+				<li><a href="/product/kitchen/etc">기타</a></li>
+			</ul>
+		</aside>
+		<main>
+			<section class="product-details">
+				<img th:src="@{'/product/kitchen/downloadImg/'+${echo.y_no}}" style="font-size: 12px;">
+				<div class="text-container">
+					<p class="innergate_IApro">
+						<span th:text="${echo.pro_kind}"></span>&nbsp;|&nbsp; 
+						<span th:text="${echo.y_no}"></span>
+					</p>
+					<p class="small-text" th:text="${echo.y_name}">제품명</p>
+					<br>
+					<p class="innergate_IApro">
+						<span th:text="${echo.pro_kind}"></span>
+					</p>
+					<span class="custom-line"></span>
+					<br>
+	                <br>
+		                <p class="innergate_pro">
+		                	<span th:text="${echo.content}"></span>
+		                </p>
+					<br>
+	                <br>
+					<!-- 상담 신청 버튼 -->
+					<p class="innergate_IApro">
+						<a href="/inquire" class="inquire-button">상담신청</a>
+					</p>
+				</div>
+			</section>
+		</main>
+	</div>
+</body>
+</html>

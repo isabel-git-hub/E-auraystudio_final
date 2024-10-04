@@ -1,0 +1,333 @@
+.chatbot-icon {
+            font-size: 30px; /* 아이콘 크기 */
+            color: #2a5d85; /* 아이콘 색상 */
+            cursor: pointer; /* 마우스를 올리면 포인터 커서로 변경 */
+            position: relative; /* 화면에 고정 */
+            bottom: 20px; /* 화면 아래에서 20px 위 */
+            right: 20px; /* 화면 오른쪽에서 20px 왼쪽 */
+            background-color: white; /* 배경색 */
+            padding: 15px; /* 여백 */
+            border-radius: 50%; /* 원형 아이콘 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+        }
+
+#chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* 다른 요소들 위에 보이도록 설정 */
+}
+
+/* 챗봇 입력 영역 */
+        #chatbot-input-container {
+            display: flex;
+            border-top: 1px solid #ccc; /* 상단 경계선 */
+            padding: 10px;
+        }
+
+#chatbot-window {
+    width: 400px;
+    height: 500px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#chatbot-messages {
+    padding: 10px;
+    overflow-y: auto;
+    flex-grow: 1;
+    height: 90%;
+}
+
+#chatbot-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    width: 300px;
+}
+
+#chatbot-send {
+    padding: 10px 15px;
+    border: none;
+    background-color: #2a5d85;
+    color: #ffffff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#chatbot-button {
+    background-color: #2a5d85;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#chatbot-button:hover {
+    background-color: #0056b3;
+}
+
+/* 팝업 스타일 */
+.popup {
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	border: 1px solid #ccc;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+	width: 555px;
+	padding: 20px;
+	z-index: 1000;
+	font-family: Arial, sans-serif;
+}
+
+.popup-header {
+	font-weight: bold;
+	font-size: 18px;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+.popup-content {
+	margin: 10px 0;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.popup-close {
+	background-color: transparent;
+	border: none;
+	font-size: 16px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+
+.popup-close:hover {
+	color: red;
+}
+
+/* 팝업 뒤의 어두운 배경 */
+.popup-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 999;
+}
+
+/* 컨텐츠 안의 리스트 스타일 */
+.popup-content ul {
+	padding-left: 20px;
+	width: auto ;
+}
+
+.popup-content ul li {
+	margin-bottom: 5px;
+}
+
+.checkbox-list {
+	width: auto;
+}
+
+#construction-period {
+	margin-top: 5%;
+	margin-bottom: auto;
+	margin-left: 20%;
+}
+
+.checkbox-list {
+	list-style: none;
+	padding-left: 0;
+}
+
+.checkbox-list li {
+	margin-bottom: 10px;
+}
+
+.submit-btn {
+	background-color: #d9534f;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.submit-btn:hover {
+	background-color: #c9302c;
+}
+
+.address-container {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.address-container input[type="text"] {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.address-container .zipcode {
+	width: 150px; /* 우편번호 필드의 너비 설정 */
+}
+
+.address-container .search-btn {
+	padding: 8px;
+	border: 1px solid #333;
+	background-color: #fff;
+	cursor: pointer;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.address-container .search-btn:hover {
+	background-color: #f1f1f1;
+}
+
+.full-width-input {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+.form-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	font-size: 1.2em; /* 동일한 크기로 통일 */
+	font-weight: bold;
+	width: 29%;
+	margin: 20px auto;
+}
+
+#table {
+	/* table-layout: fixed; */
+	
+}
+
+.form-header .required-note {
+	color: #d9534f; /* 빨간색 */
+font-size: 13px; /* 통일된 폰트 크기 */
+}
+
+.form-header .title {
+	color: #333;
+}
+
+.divider_01 {
+	border-top: 1px solid #000;
+	margin-bottom: 20px;
+	width: 30%;
+	margin: 0 auto;
+}
+
+.divider_02 {
+	border-top: 1px solid #000;
+	margin-bottom: 20px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+form {
+	width: 100%; /* 폼 너비를 100%로 설정 */
+max-width: 600px; /* 최대 너비를 600px로 제한 */
+margin: 0 auto; /* 폼을 가운데 정렬 */
+}
+
+#inquiryForm {
+	width: 525px; /* 원하는 너비로 설정 */
+margin: 0 auto; /* 가운데 정렬 */
+}
+
+table {
+	width: 100%; /* 폼 안의 테이블도 폼 너비에 맞게 */
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+td {
+	padding: 10px 0;
+	vertical-align: top;
+}
+
+input[type="text"], textarea {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box; /* 패딩과 테두리 포함 */
+}
+
+input[type="submit"], .popup-confirm {
+	background-color: #B8D0FA;
+	color: lightslategrey;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+input[type="submit"]:hover {
+	background-color: #B8D0FA;
+}
+
+.popup-confirm {
+    display: block;
+    margin: 0 auto;
+}
+
+
+.required {
+	color: red;
+}
+
+.small-text {
+	font-size: 0.8em;
+	color: #666;
+}
+
+.phone-input {
+	display: flex;
+	gap: 10px;
+}
+
+.phone-input input {
+	width: auto;
+	flex: 1;
+}
+
+#inquiry {
+	margin-top: 20px;
+	text-align: center;
+}
+
+#inquiryForm input[type="text"], #inquiryForm textarea {
+	width: 100%; /* 입력 필드 너비를 폼에 맞추기 */
+box-sizing: border-box; /* 패딩과 테두리 포함 */
+}
+
+.spacing {
+  margin-left: 37%; /* 원하는 여백 크기로 조정 */
+}

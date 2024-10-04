@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/nav.css">
+<script type="text/javascript" src="script.js"></script>
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+    /* 슬라이드 스타일 */
+    .slideshow-container {
+        position: relative;
+        max-width: 1000px;
+        margin: auto;
+    }
+
+    .slides img {
+        width: 100%;
+        height: auto;
+    }
+
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+    }
+
+    /* 아이콘 컨테이너 스타일 */
+    .icon-container {
+        display: flex;
+        justify-content: space-around;
+        margin: -50px 0;
+        width: 62%;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        margin-left: 19%;
+    }
+
+    .icon-item {
+        text-align: center;
+        font-size: 24px;
+        display: flex; /* Flexbox 사용 */
+        flex-direction: column; /* 수직 정렬 */
+        align-items: center; /* 가운데 정렬 */
+    }
+
+    .icon-item i {
+        font-size: 30px; /* 아이콘 크기 조절 */
+        color: #555;
+        text-decoration: none; /* 아이콘의 밑줄 제거 */
+    }
+
+    .icon-item span {
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+        text-decoration: none; /* 텍스트 밑줄 제거 */
+    }
+
+    .icon-item a {
+        text-decoration: none; /* 링크 밑줄 제거 */
+        color: inherit; /* 부모 요소의 색상 상속 */
+    }
+
+    .icon-item a:hover {
+        color: #000; /* 호버 시 색상 변경 */
+        text-decoration: none; /* 호버 시에도 밑줄 제거 */
+    }
+</style>
+</head>
+<body>
+	<div th:replace="fragments/nav :: nav"></div>
+
+	<div layout:fragment="content">
+		<div class="slideshow-container">
+			<div class="slides">
+				<img src="/img/index/인덱스1.jpg" alt="Slide 1">
+			</div>
+
+			<div class="slides">
+				<img src="/img/index/인덱스2.jpg" alt="Slide 2">
+			</div>
+
+			<div class="slides">
+				<img src="/img/index/인덱스3.jpg" alt="Slide 3">
+			</div>
+			
+			<div class="slides">
+				<img src="/img/index/인덱스4.jpg" alt="Slide 4">
+			</div>
+
+			<a class="prev" onclick="plusSlides(-1)">&#10094;</a> 
+			<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+
+		<!-- 아이콘 컨테이너 추가 -->
+		<div class="icon-container">
+		    <div class="icon-item">
+		        <a href="/product/kitchen/echo" class="product"> <!-- 링크 URL 지정 -->
+		            <i class="fas fa-utensils"></i> <br><br>
+		            <span>키친</span>
+		        </a>
+		    </div>
+		    <div class="icon-item">
+		        <a href="/product/door/doorabs" class="product"> <!-- 링크 URL 지정 -->
+		            <i class="fas fa-door-closed"></i> <br><br>
+		            <span>도어</span>
+		        </a>
+		    </div>
+		    <div class="icon-item">
+		        <a href="/product/innergate/jungmun3" class="product"> <!-- 링크 URL 지정 -->
+		            <i class="fas fa-door-open"></i> <br><br>
+		            <span>중문</span>
+		        </a>
+		    </div>
+		    <div class="icon-item">
+		        <a href="/product/bath/essential" class="product"> <!-- 링크 URL 지정 -->
+		            <i class="fas fa-bath"></i> <br><br>
+		            <span>바스</span>
+		        </a>
+		    </div>
+		    <div class="icon-item">
+		        <a href="/product/wallpaper/silk" class="product"> <!-- 링크 URL 지정 -->
+		            <i class="fas fa-paint-roller"></i> <br><br>
+		            <span>벽지</span>
+		        </a>
+		    </div>
+		</div>
+	</div>
+
+	<script>
+	/* 슬라이드js */
+	let slideIndex = 0;
+	showSlides();
+
+	function showSlides() {
+		let i;
+		let slides = document.getElementsByClassName("slides");
+		for (i = 0; i < slides.length; i++) {
+			slides[i].style.display = "none";
+		}
+		slideIndex++;
+		if (slideIndex > slides.length) {
+			slideIndex = 1
+		}
+		slides[slideIndex - 1].style.display = "block";
+		setTimeout(showSlides, 5000); // 5초마다 슬라이드 자동 전환
+	}
+
+	function plusSlides(n) {
+		slideIndex += n - 1;
+		showSlides();
+	}
+
+	/* 스크롤 시 네비게이션 바 숨기기 */
+	let prevScrollPos = window.pageYOffset;
+	window.onscroll = function() {
+		let currentScrollPos = window.pageYOffset;
+		let navbar = document.getElementById("navbar");
+
+		if (prevScrollPos > currentScrollPos) {
+			// 스크롤이 위로 이동하면 네비게이션 바 표시
+			navbar.classList.remove("hidden");
+		} else {
+			// 스크롤이 아래로 이동하면 네비게이션 바 숨기기
+			navbar.classList.add("hidden");
+		}
+		prevScrollPos = currentScrollPos;
+	}
+	</script>
+
+</body>
+</html>
+  

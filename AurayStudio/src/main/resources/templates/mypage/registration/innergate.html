@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script th:src="@{/js/script.js}"></script>
+<!-- <link rel="stylesheet" href="/css/nav.css"> -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<title>중문 목록</title>
+<style>
+h1 {
+	text-align: center;
+	margin-bottom: 7px;
+}
+
+.pagination {
+	text-align: center;
+	margin-top: 8px;
+}
+
+#img_01 {
+width: 100px ;
+height: 100px;
+}
+
+/* 페이지 전체를 가운데로 정렬하기 위한 CSS */
+ body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	/* padding: 20px; */
+	/* display: flex;  *//* Flexbox 사용 */
+	/* justify-content: center; */ /* 수평 중앙 정렬 */
+	/* align-items: center; */ /* 수직 중앙 정렬 */ 
+ 	margin: 0;
+} 
+
+/* 폼과 테이블이 들어갈 컨테이너 */
+.container {
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+	width: 100%;
+	max-width: 1000px; /* 폼과 테이블의 최대 너비 설정 */
+	margin: auto;
+}
+
+/* 테이블과 폼 중앙 정렬 */
+#table_01 table {
+	width: 50%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+/* 테이블과 폼 중앙 정렬 */
+.table_02 table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+table, th, td {
+	border: 1px solid #ccc;
+	padding: 5px;
+	text-align: center;
+}
+
+th {
+	background-color: #5cb85c;
+	color: white;
+}
+
+a {
+	text-decoration: none;
+	color: blue;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.delete-btn {
+	background-color: red;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.center {
+	display: flex;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: center; /* 수직 중앙 정렬 */
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: -17px;
+}
+
+</style>
+<script type="text/javascript">
+	function deleteY_no(button) {
+		var y_no = button.getAttribute('data-y_no');
+		alert(y_no);
+		location.href = "/mypage/registration/delete/" + y_no;
+	}
+</script>
+
+</head>
+
+<body>
+
+		<!-- 타임리프 네비게이션 바 -->
+	<div th:replace="fragments/nav :: nav"></div>
+<!-- <div th:replace="fragments/nav :: nav"></div> -->
+	<div class="container">
+<!-- 		<header class="center">
+			<h1>Auray Studio</h1>
+		</header> -->
+
+		<a href="registration">목록으로</a>
+		<h1>중문 목록</h1>
+		<table style="width: 100%">
+			<thead>
+				<tr>
+					<th>제품 번호</th>
+					<th>제품명</th>
+					<th>스타일</th>
+					<th>내용</th>
+					<th>이미지</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="innergate : ${innergates}">
+					<td th:text="${innergate.y_no}">제품 번호</td>
+					<td th:text="${innergate.i_name}">제품명</td>
+					<td th:text="${innergate.style}">스타일</td>
+					<td th:text="${innergate.content}">내용</td>
+					<td th:text="${innergate.y_img}">이미지</td>
+					<!--  <td><img id="img_01"
+						th:src="@{'/mypage/registration/downloadImg/'+${kitchen.y_no}}"
+						alt="제품 이미지"></td>-->
+					<td><input type="button" value="삭제"
+						th:data-y_no="${innergate.y_no}" onclick="deleteY_no(this)"></td>
+					<!-- <td><img id="img_01" th:src="@{'/mypage/registration/downloadImg/'+${kitchen.y_no}}" alt="제품 이미지"></td> -->
+				</tr>
+			</tbody>
+		</table>
+		<div class="pagination">
+			<!-- 이전 페이지 그룹 -->
+			<a th:if="${hasPrevPage}"
+				th:href="@{'/mypage/innergate?page=' + (${startPage} - 1) + '&size=' + ${size != null ? size : 10}}">이전</a>
+
+			<!-- 페이지 번호 -->
+			<span th:each="i : ${#numbers.sequence(startPage, endPage)}">
+				<a
+				th:href="@{'/mypage/innergate?page=' + ${i} + '&size=' + ${size != null ? size : 10}}"
+				th:text="${i}" th:classappend="${i == currentPage} ? 'active' : ''"></a>
+			</span>
+
+			<!-- 다음 페이지 그룹 -->
+			<a th:if="${hasNextPage}"
+				th:href="@{'/mypage/innergate?page=' + (${endPage} + 1) + '&size=' + ${size != null ? size : 10}}">다음</a>
+		</div>
+	</div>
+</body>
+</html>

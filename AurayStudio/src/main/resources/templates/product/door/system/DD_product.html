@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8">
+	    <title th:text="${doorD.y_name}">제품명</title>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" th:href="@{/css/KA_product.css}">
+	<script th:src="@{https://code.jquery.com/jquery-latest.min.js}"></script>
+	</head>
+	<body>
+		<div th:replace="fragments/nav :: nav"></div>
+	
+		<div class="container">
+			<aside class="sidebar">
+				<h2>도어</h2>
+				<span class="custom-line"></span>
+				<ul>
+					<li><a href="/product/door/doorabs">ABS 도어</a></li>
+					<li><a href="/product/door/craftinesse">기능성 도어</a></li>
+					<li><a href="/product/door/hardware">도어 하드웨어</a></li>
+					<li><a href="/product/door/system">도어 시스템</a></li>
+				</ul>
+			</aside>
+		    <main>
+		        <section class="product-details">
+		            <img th:src="@{'/product/paint/downloadImg/'+${doorD.y_no}}" alt="제품 이미지">
+		            <div class="text-container">
+		                <p class="innergate_IApro">
+		                    <span th:text="${doorD.pro_kind}"></span>&nbsp;|&nbsp;
+		                    <span th:text="${doorD.y_no}"></span>
+		                </p>
+		                <p class="small-text" th:text="${doorD.y_name}"></p>
+		                <br>
+		                <p class="innergate_IApro">
+		                    <span th:text="${doorD.style}"></span>
+		                </p>
+		                <span class="custom-line"></span>
+		                
+		                <div class="scrollable-content">
+		                <br>
+		                <br>
+							<p class="innergate_IApro">
+								<span th:text="${doorD.content}"></span>
+							</p>
+						<br>
+		                <br>
+						</div>
+						<p class="innergate_pro"></p>
+		                <!-- 상담 신청 버튼 -->
+		                <p class="innergate_IApro">
+		                    <a href="/inquire" class="inquire-button">상담신청</a>
+		                </p>
+		            </div>
+		        </section>
+		    </main>
+		</div>
+	</body>
+</html>

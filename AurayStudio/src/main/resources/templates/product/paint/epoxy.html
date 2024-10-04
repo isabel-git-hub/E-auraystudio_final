@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Auray Studio</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/kitchen.css">
+<script th:src="@{https://code.jquery.com/jquery-latest.min.js}"></script>
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+
+	<div class="main-content">
+		<aside class="sidebar">
+			<h2>페인트</h2>
+			<span class="custom-line"></span>
+			<ul>
+				<li><a href="/product/paint/paint">페인트</a></li>
+				<li><a href="/product/paint/waterproof">방수페인트</a></li>
+				<li><a href="/product/paint/primer">프라이머</a></li>
+				<li><a href="/product/paint/epoxy">에폭시</a></li>
+				<li><a href="/product/paint/thinner">신나</a></li>
+				<li><a href="/product/paint/elastic">탄성코트</a></li>
+			</ul>
+		</aside>
+
+		<main class="content-area">
+			<section>
+				<h2>에폭시</h2>
+				<!-- Thymeleaf loop to iterate over the door items -->
+				<div class="products-container">
+					<div th:each="paint : ${paints}" class="door-item">
+						<div class="innergate-field">
+							<!-- 이미지 클릭 시 해당 제품의 상세 페이지로 이동 -->
+							<a th:href="@{'/product/paint/epoxy/' + ${paint.y_no}}"> 
+								<img th:src="@{'downloadImg/'+${paint.y_no}}" style="font-size: 12px;">
+							</a>
+						</div>
+						<div class="innergate-field">
+							<span th:text="${paint.y_no}">제품코드</span>&nbsp;&nbsp;<br> <span
+								th:text="${paint.y_name}" style="font-size: 12px;"></span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+</body>
+</html>
+

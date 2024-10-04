@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Auray Studio</title>
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script type="text/javascript" src="/js/script.js"></script>
+<script th:src="@{https://code.jquery.com/jquery-latest.min.js}"></script>
+</head>
+<body>
+
+<!-- 	<header>
+		<h1>Auray Studio</h1>
+		<div>
+			<ul>
+				<li th:if="${session.loggedInUser == null}"><a
+					th:href="@{/login}">로그인</a></li>
+				<li th:if="${session.loggedInUser == null}"><a
+					th:href="@{/join}">회원가입</a></li>
+				<li th:if="${session.loggedInUser != null}"><span
+					th:text="'안녕하세요, ' + ${session.loggedInUser} + '님'"></span></li>
+				<li th:if="${session.loggedInUser != null}"><a
+					th:href="@{/logout}">로그아웃</a></li>
+				<li sec:authorize="isAuthenticated()">
+            <span th:text="'안녕하세요, ' + ${#authentication.principal.username} + '님'"></span>
+        </li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/login}">로그인</a></li>
+        <li sec:authorize="isAnonymous()"><a th:href="@{/join}">회원가입</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></li>
+			</ul>
+		</div>
+	</header>
+	<nav>
+		<ul>
+			<li><a th:href="@{/}">홈</a></li>
+			<li><a href="/company">회사소개</a></li>
+			<li><a href="/inquire">상담신청</a></li>
+			<li><a href="/guide">가이드</a></li>
+			<li><a href="/product">제품보기</a></li>
+			<li><a href="/shop">매장</a></li>
+		</ul>
+	</nav>
+	<main>
+	<div layout:fragment="content">
+	</div>
+	</main>
+	<footer>
+		<p>Auray Studio</p>
+	</footer> -->
+	
+	<!-- <div th:replace="fragments/header :: header"></div> -->
+    
+    <!-- <div th:replace="fragments/nav :: nav"></div> -->
+    <div th:replace="fragments/nav :: nav"></div>
+    
+    <!-- <th:block layout:fragment="content"></th:block> -->
+<!--     <div th:fragment="content">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        슬라이드 인디케이터
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+        </ol> -->
+        
+	<div layout:fragment="content"></div>
+    
+    <div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

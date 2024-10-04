@@ -1,0 +1,107 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 헤더 스타일 */
+.company-header {
+    background: #ffffff;
+    padding: 40px 0;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.company-header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: #333;
+}
+
+.company-header p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* 섹션 스타일 */
+section {
+    padding: 40px 0;
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+
+section h2 {
+    margin-top: 0;
+    font-size: 2em;
+    color: #333;
+}
+
+section p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* 서비스 그리드 스타일 */
+.service-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.service-item {
+    flex: 1 1 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 20px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.service-item h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.service-item p {
+    font-size: 1em;
+    color: #666;
+}
+
+/* 접근 방식, 팀, 협업 스타일 */
+.approach, .team, .collaboration {
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+    padding: 40px 0;
+}
+
+.approach h2, .team h2, .collaboration h2 {
+    font-size: 2em;
+    color: #333;
+    margin-top: 0;
+}
+
+.approach p, .team p, .collaboration p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .service-grid {
+        flex-direction: column;
+    }
+
+    .service-item {
+        flex: 1 1 100%;
+    }
+}

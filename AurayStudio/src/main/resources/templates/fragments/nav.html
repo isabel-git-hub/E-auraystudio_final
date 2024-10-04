@@ -1,0 +1,152 @@
+<div th:fragment="nav">
+	<nav>
+		<div class="nav-container">
+			<a href="/" style="text-decoration: none; color: inherit;">
+				<h1>Auray Studio</h1>
+			</a> &nbsp;&nbsp;&nbsp;
+			<ul class="menu left-menu">
+                 <li class="list-style"><a th:href="@{/company}" class="active">회사소개</a></li>
+                <li class="list-style mega-menu">
+                    <a th:href="@{#}" class="active">제품보기</a>
+                    <ul class="submenu">
+                        <li class="list-style"><a href="/product/kitchen/echo" >키친</a></li>
+                        <li class="list-style"><a href="/product/built_in/casement" >붙박이장</a></li>
+                        <li class="list-style"><a href="/product/door/doorabs" >도어</a></li>
+                        <li class="list-style"><a href="/product/innergate/jungmun3" >중문</a></li>
+                        <li class="list-style">
+                            <a href="/product/bath">바스</a>
+                            <div class="dropdown-content">
+                                <img th:src="@{/img/bath/essential2.png}" style="width: 100%; height: 125px; margin-bottom: 20px;">
+                                <p>바스</p>
+                                <hr style="border: 0.1px solid #ccc; margin: 10px 0; margin-top: 2px;">
+                                <div class="dropdown-item">
+                                    <img th:src="@{/img/bath/essential.png}">
+                                    <a href="/product/bath/essential">에센셜 바스</a>
+                                </div>
+                                <div class="dropdown-item">
+                                    <img th:src="@{/img/bath/timeless.png}">
+                                    <a href="/product/bath/timeless">타임리스 바스</a>
+                                </div>
+                                <div class="dropdown-item">
+                                    <img th:src="@{/img/bath/fixtures.png}">
+                                    <a href="/product/bath/fixtures">바스 구성기기</a>
+                                </div>
+                            </div>
+                        </li>
+						<li class="list-style"><a href="/product/tile/tile">타일</a></li>
+						<li class="list-style"><a href="/product/window/normal">창호</a></li>
+						<li class="list-style"><a href="/product/moulding/moulding">몰딩</a></li>
+						<li class="list-style">
+						    <a href="/product/wall">Wall</a>
+							<div class="dropdown-content">
+								<img th:src="@{/img/wall/stylewall/stylewall3.png}" style="width: 100%; height: 125px; margin-bottom: 20px;">
+								<p>Wall</p>
+								<hr style="border: 0.1px solid #ccc; margin: 10px 0; margin-top: 2px;">
+								<div class="dropdown-item">
+									<img th:src="@{/img/wall/stylewall/stylewall.png}"> 
+									<a href="/product/wall/style">스타일월</a>
+								</div>
+								<div class="dropdown-item">
+									<img th:src="@{/img/wall/wallpanel/wallpanel.png}"> 
+									<a href="/product/wall/panel">월판넬</a>
+								</div>
+							</div>
+						</li>
+						<li class="list-style"><a href="/product/wallpaper/silk" >벽지</a></li>
+						<li class="list-style">
+						    <a href="/product/film">필름</a>
+							<div class="dropdown-content">
+								<img th:src="@{/img/film/인테리어 필름.png}" style="width: 100%; height: 125px; margin-bottom: 20px;">
+								<p>필름</p>
+								<hr style="border: 0.1px solid #ccc; margin: 10px 0; margin-top: 2px;">
+								<div class="dropdown-item">
+									<img th:src="@{/img/film/솔리드.jpg}"> 
+									<a href="/product/film/solid">솔리드</a>
+								</div>
+								<div class="dropdown-item">
+									<img th:src="@{/img/film/메탈.png}"> 
+									<a href="/product/film/metal">메탈</a>
+								</div>
+								<div class="dropdown-item">
+									<img th:src="@{/img/film/우드.png}"> 
+									<a href="/product/film/wood">우드</a>
+								</div>
+								<div class="dropdown-item">
+									<img th:src="@{/img/film/스톤.jpg}"> 
+									<a href="/product/film/stone">스톤</a>
+								</div>
+								<div class="dropdown-item">
+									<img th:src="@{/img/film/텍스타일.png}"> 
+									<a href="/product/film/textile">텍스타일</a>
+								</div>
+								<div class="dropdown-item">
+									<img th:src="@{/img/film/레더.png}"> 
+									<a href="/product/film/leather">레더</a>
+								</div>
+								<div class="dropdown-item">
+									<img th:src="@{/img/film/인테리어 보드.jpg}"> 
+									<a href="/product/film/interior-board">인테리어 보드</a>
+								</div>
+							</div></li>
+						<li class="list-style"><a href="/product/flooring/wood" >바닥재</a></li>
+                        <li class="list-style"><a href="/product/paint/paint" >페인트</a></li>
+                        <li class="list-style"><a href="/product/insulation" >단열재</a></li>
+                    </ul>
+                </li>
+                <li class="list-style"><a th:href="@{/inquire}" class="active">상담신청</a></li>
+                <li class="list-style"><a th:href="@{/shop}" >매장찾기</a></li>
+            </ul>
+
+
+
+			<ul class="menu right-menu">
+
+				<!-- 햄버거 메뉴 아이콘 추가 -->
+				<div class="menu-icon" onclick="openMenu()" style="width: 10px;">
+					<i class="fa-solid fa-bars"></i>
+				</div>
+				<li sec:authorize="isAnonymous()" class="list-style"><a
+					th:href="@{/login}"> <i class="fa-regular fa-user"></i> 로그인
+				</a></li>
+				<li sec:authorize="isAnonymous()" class="list-style"><a
+					th:href="@{/join}">회원가입</a></li>
+
+
+
+				<li sec:authorize="isAuthenticated()" class="list-style"><a
+					th:href="@{/logout}">로그아웃</a></li>
+
+				<!-- <li sec:authorize="isAuthenticated()"><a href="/mypage"> <span
+						th:text="${#authentication.name} + '님'"></span>
+				</a></li> -->
+
+				<li sec:authorize="isAuthenticated()"><a href="/mypage"> <!-- 관리자 이름 옆에 'A' 아이콘 표시 -->
+						<span sec:authorize="hasRole('ADMIN')" class="admin-icon">A</span> &nbsp;
+						<span th:text="${#authentication.name} + '님'"></span> <!-- 관리자 여부 확인 후 'A' 아이콘 표시 -->
+						
+				</a></li>
+
+			</ul>
+		</div>
+		<!-- 숨겨진 슬라이드 메뉴 -->
+		<div id="side-menu" class="side-menu">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeMenu()">&times;</a>
+			<ul>
+				<li><a href="/company">회사소개</a></li>
+				<li><a href="/product">제품보기</a></li>
+				<li><a href="/inquire">상담신청</a></li>
+				<li><a href="/shop">매장찾기</a></li>
+			</ul>
+		</div>
+	</nav>
+	<script>
+		function openMenu() {
+			document.getElementById('side-menu').classList.add('open');
+		}
+
+		function closeMenu() {
+			document.getElementById('side-menu').classList.remove('open');
+		}
+	</script>
+
+</div>

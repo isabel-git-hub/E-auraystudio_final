@@ -1,0 +1,32 @@
+/* * {
+	margin: 100px;
+} */
+
+.status-grid {
+	display: flex;
+	justify-content: space-around;
+	text-align: center;
+	/* margin-top: -10%; */
+/* 	margin-left: 20%; */
+}
+
+.etc {
+	padding: 10px;
+	margin-left: -53%;
+}
+
+.ul ul {
+	padding:10px;
+}
+
+/* 기본적인 스타일 */
+ul {
+	list-style-type: none;
+	margin: 0;
+	width: 200px;
+}
+
+h2 {
+	text-align: center ;
+	margin-bottom : 15px ;
+}

@@ -1,0 +1,82 @@
+p {
+	font-size: 20px;
+}
+
+#contents {
+ 	text-align: center ;
+ 	margin-top: 5% ;
+ }
+ 
+   /* 기존 CSS 스타일 */
+ .advantages {
+     display: flex;
+     justify-content: space-around;
+     flex-wrap: wrap;
+     margin: 20px 0;
+ }
+ .advantage-item {
+     display: flex;
+     justify-content: space-around;
+     flex-wrap: wrap;
+     width: 100%;
+ }
+ .advantage-item img, 
+ .additional-images img {
+     max-width: 43%;
+     height: auto;
+     margin: 10px;
+ }
+ .additional-images {
+     display: flex;
+     flex-direction:column ;
+     align-items: center ;
+     margin: 20px 0;
+ }
+ 
+ /* 새로운 CSS 스타일 추가 적용 */
+ .advantages {
+     justify-content: space-around;
+ }
+ .advantage-item {
+     text-align: center;
+     width: 40%;
+ }
+ .advantage-item img {
+     max-width: 100%;
+     height: auto;
+ }
+ .advantage-item span {
+     display: block; /* 각 설명을 블록 요소로 만들어 줄 바꿈 */
+     margin-top: 5px; /* 이미지와 설명 사이의 간격 조정 */
+ }
+ 
+ /* 추가 CSS 스타일 */
+.advantages {
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    margin: 20px 0;
+}
+
+.advantage-item {
+    text-align: center; /* 텍스트와 이미지를 중앙 정렬 */
+    width: 43%; /* 각 항목의 너비 설정 */
+    /* margin-bottom: 20px; */ /* 항목 간의 간격 설정 */
+    margin: 50px;
+    margin-top: 0%;
+}
+
+.advantage-item img {
+    margin: 0 auto; /* 이미지 위쪽 여백 추가 */
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin-top: 15px;
+}
+
+.advantage-item span {
+    display: block; /* 텍스트를 블록 요소로 처리 */
+    margin-top: 10px; /* 이미지와 텍스트 간의 간격 조정 */
+    font-size: 14px; /* 텍스트 크기 조정 */
+}
+ 

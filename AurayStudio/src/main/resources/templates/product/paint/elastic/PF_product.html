@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${elasticA.y_name}">제품명</title>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" th:href="@{/css/KA_product.css}">
+	<script th:src="@{https://code.jquery.com/jquery-latest.min.js}"></script>
+</head>
+<body>
+	<div th:replace="fragments/nav :: nav"></div>
+    <div class="main-content">
+		<aside class="sidebar">
+			<h2>페인트</h2>
+			<span class="custom-line"></span>
+			<ul>
+				<li><a href="/product/paint/paint">페인트</a></li>
+				<li><a href="/product/paint/waterproof">방수페인트</a></li>
+				<li><a href="/product/paint/primer">프라이머</a></li>
+				<li><a href="/product/paint/epoxy">에폭시</a></li>
+				<li><a href="/product/paint/thinner">신나</a></li>
+				<li><a href="/product/paint/elastic">탄성코트</a></li>
+			</ul>
+		</aside>
+
+		<main>
+        <section class="product-details">
+            <img th:src="@{'/product/paint/downloadImg/'+${elasticA.y_no}}" alt="제품 이미지">
+            <div class="text-container">
+                <p class="innergate_IApro">
+                    <span th:text="${elasticA.pro_kind}"></span>&nbsp;|&nbsp;
+                    <span th:text="${elasticA.y_no}"></span>
+                </p>
+                <h3 th:text="${elasticA.y_name}">제품명</h3>
+                <br>
+                <p class="innergate_IApro">
+                    <span th:text="${elasticA.style}"></span>
+                    <!-- <span th:text="${elasticA.style}"></span> -->
+                </p>
+                <span class="custom-line"></span>
+                <br>
+                <br>
+	                <p class="innergate_pro">
+	                	<span th:text="${elasticA.content}"></span>
+	                </p>
+				<br>
+                <br>
+                <!-- 상담 신청 버튼 -->
+                <p class="innergate_IApro">
+                    <a href="/inquire" class="inquire-button">상담신청</a>
+                </p>
+            </div>
+        </section>
+    </main>
+    </div>
+</body>
+</html>

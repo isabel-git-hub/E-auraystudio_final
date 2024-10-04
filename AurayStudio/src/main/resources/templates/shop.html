@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auray Studio 매장 찾기</title>
+
+    <!-- Kakao Map API -->
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6174f159c915c7f12aa6f40cbe1017c7"></script>
+
+    <!-- Custom Stylesheets -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
+
+    <!-- 지도 스타일 -->
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    #contents {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 50px 50px; 
+    }
+
+    /* 왼쪽 텍스트 내용 스타일 */
+    #left-content {
+        width: 40%; /* 여백을 주기 위해 너비를 45%에서 40%로 조정 */
+        padding-right: 20px;
+    }
+
+    #left-content h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    #left-content p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    .info dl {
+        margin-bottom: 10px;
+    }
+
+    .info dt {
+        font-weight: bold;
+    }
+
+    .info dd {
+        margin: 0;
+        padding: 0 0 10px 0;
+    }
+
+    /* 오른쪽 지도 스타일 */
+    #map-container {
+        width: 40%; /* 여백을 주기 위해 너비를 45%에서 40%로 조정 */
+    }
+
+    #map {
+        width: 100%;
+        height: 555px;
+    }
+
+</style>
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    <div th:replace="fragments/nav :: nav"></div>
+
+    <!-- Main Content -->
+    <div id="contents">
+    
+    	<!-- Left Content -->
+    	<br>
+    	<div id="left-content">
+	    	<h2>㈜ AurayStudio</h2>
+	    	<br>
+	    	<span class="custom-line"></span> 
+	    	<p>
+	    	전문적이고 혁신적인 디자인으로 업계를 선도하고 있는 인테리어 전문 기업입니다.
+	    	<br>
+	    	상담부터 완공까지 디테일한 설계와 우수한 자재, 안전하고 체계적인 시공을 약속드립니다.
+	    	<br>
+	    	<strong>AurayStudio</strong>&nbsp;에서 공간이 선사하는 가치를 만나 보세요.
+	    	</p>
+	    	<br><br>
+	    	<div class="info">
+	    		<dl>
+	    			<dt>주소</dt>
+	    			<dd>대전 서구 둔산로 52 미라클빌딩 3층</dd>
+	    		</dl>
+	    		<dl>
+	    			<dt>전화번호</dt>
+	    			<dd>010-1234-1234</dd>
+	    		</dl>
+	    		<dl>
+	    			<dt>공식메일</dt>
+	    			<dd>auraystu0y@email.com</dd>
+	    		</dl>
+	    	</div>
+    	</div>
+
+    	<!-- Right Map Content -->
+    	<div id="map-container">
+            <div id="map"></div>
+        </div>
+
+    </div>
+
+    <!-- Kakao Map Script -->
+    <script>
+        // 지도 생성 함수
+        function createMap(latitude, longitude) {
+            var container = document.getElementById('map'); 
+            var options = { 
+                center: new kakao.maps.LatLng(latitude, longitude), // 지도 중심을 매장 위치로 설정
+                level: 3 
+            };
+
+            var map = new kakao.maps.Map(container, options);
+
+            // 매장 위치 정보 (대전 서구 둔산로 52 미라클빌딩)
+            var storeLatitude = 36.3510333991808;   // 매장의 위도
+            var storeLongitude = 127.3797282718; // 매장의 경도
+
+            // 매장 위치에 마커 생성
+            var storePosition = new kakao.maps.LatLng(storeLatitude, storeLongitude); // 매장 위치
+            var marker = new kakao.maps.Marker({
+                position: storePosition
+            });
+
+            // 마커를 지도에 표시
+            marker.setMap(map);
+
+            // 마커 클릭 시 표시할 인포윈도우 내용
+            var infowindow = new kakao.maps.InfoWindow({
+                content: '<div style="padding:5px;">미라클빌딩 (둔산로 52)</div>'
+            });
+
+            // 마커에 클릭 이벤트 추가
+            kakao.maps.event.addListener(marker, 'click', function() {
+                infowindow.open(map, marker); // 마커 클릭 시 인포윈도우 표시
+            });
+        }
+
+        // 페이지가 처음 로드될 때 기본 좌표로 지도 생성 (대전 서구 둔산로 52 미라클빌딩)
+        createMap(36.3510333991808, 127.3797282718);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script th:src="@{/js/script.js}"></script>
+<!-- <link rel="stylesheet" href="/css/nav.css"> -->
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<title>회원관리</title>
+<style>
+* {
+text-align: center;
+}
+#h2_01 {
+	text-align: center;
+}
+
+#img_01 {
+width: 100px ;
+height: 100px;
+}
+
+/* 페이지 전체를 가운데로 정렬하기 위한 CSS */
+ body {
+	font-family: Arial, sans-serif;
+	/* background-color: #f4f4f4; */
+	/* padding: 20px; */
+	/* display: flex;  *//* Flexbox 사용 */
+	/* justify-content: center; */ /* 수평 중앙 정렬 */
+	/* align-items: center; */ /* 수직 중앙 정렬 */ 
+ 	margin: 0;
+} 
+
+/* 폼 내 버튼 정렬 */
+form {
+	display: flex;
+	flex-direction: row; /* 버튼을 세로 정렬 */
+	align-items: center; /* 버튼을 가운데로 정렬 */
+	justify-content: center ;
+}
+
+/* 폼과 테이블이 들어갈 컨테이너 */
+.container {
+	background-color: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 1000px; /* 폼과 테이블의 최대 너비 설정 */
+	margin: auto;
+	margin-top: 1%;
+}
+
+/* 테이블과 폼 중앙 정렬 */
+#table_01 table {
+	width: 50%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+/* 테이블과 폼 중앙 정렬 */
+.table_02 table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+
+table, th, td {
+	border: 1px solid #ccc;
+	padding: 5px;
+	text-align: center;
+}
+
+th {
+	background-color: #5cb85c;
+	color: white;
+}
+
+a {
+	text-decoration: none;
+	color: blue;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+.delete-btn {
+	background-color: red;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+
+.center {
+	display: flex;
+	justify-content: center; /* 수평 중앙 정렬 */
+	align-items: center; /* 수직 중앙 정렬 */
+}
+</style>
+<script type="text/javascript">
+	function deleteY_no(button) {
+		var y_no = button.getAttribute('data-y_no');
+		alert(y_no);
+		location.href = "/mypage/registration/delete/" + y_no;
+	}
+</script>
+</head>
+<div th:replace="fragments/nav :: nav"></div>
+
+ <!-- 사이드바 -->
+    <div class="sidebar">
+        <h2>마이페이지</h2>
+        <span class="custom-line"></span>
+        <ul>
+            <!-- 게시판 메뉴 출력 -->
+            <li>
+                <a href="#" onclick="navigateToBoard(event, 1)">견적의뢰</a>
+            </li>
+            <li>
+                <a href="#" onclick="navigateToBoard(event, 2)">견적서</a>
+            </li>
+            <li>
+                <a href="#" onclick="navigateToBoard(event, 3)">시공후기</a>
+            </li>
+            
+            <!-- <li><a href="/mypage/member">나의 정보</a></li> -->
+            
+            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
+            	<a href="#" onclick="loadContent('/mypage/member')">나의 정보</a>
+            </li>
+
+			<!-- 관리자 전용 메뉴 -->
+			<li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+				<a href="/mypage/registration">제품 관리</a>
+			</li>
+
+			<li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+				<a href="/mypage/manage">회원 관리</a>
+			</li>
+        </ul>
+    </div>
+
+<body>
+	<div class="container">
+	    	<div id="left">
+	    	</div>
+	    	<div id="main">
+	        	<br><h1>회원관리</h1><br>
+				<form name="manageForm" action="manage" method="post">
+			    	<table>
+			    		<tr>
+			    			<th>번호</th>
+			    			<th>아이디</th>
+			    			<th>패스워드</th>
+			    			<th>권한</th>
+			    			<th>수정</th>
+			    			<th>삭제</th>
+				       </tr>	
+				       <tr th:each="dto, no : ${memberList}">
+				       		<td th:text="${no.index+1}"></td>
+				       		<td th:text="${dto.userid}"></td>
+				       		<td>
+				       			<input type="password" name="userpw" th:value="${dto.userpw}">
+				       		</td>
+				       		<td>
+				       			<select name="permit">
+				       			<option value=0 th:selected="${dto.permit==0}">사용자</option>
+				       			<option value=1 th:selected="${dto.permit==1}">매니저</option>
+				       			<option value=2 th:selected="${dto.permit==2}">관리자</option>
+				       			</select>
+				       		</td>
+				       		<td>
+				       			<input type="button" value="수정"
+				       				th:data-userid="${dto.userid}"
+				       				onclick="userSubmit(this)">
+				       		</td>
+				       		<td>
+				       			<input type="button" value="삭제" th:data-userid="${dto.userid}"
+				       				onclick="deleteUser(this)">
+				       		</td>
+				       </tr>
+			        </table>
+		      	</form>
+		    </div>
+		<div id="right"></div>
+		
+		<script>
+    
+		 // 기본 content에 "나의 정보" 페이지 로드
+		    $(document).ready(function() {
+		        loadContent('/mypage/member');
+		    });
+ 
+        // 게시판 페이지로 이동하는 함수
+        function navigateToBoard(event, boardNo) {
+            event.preventDefault();
+            var page = 1; // 기본 페이지 번호 설정
+            window.location.href = "/board/" + boardNo + "/" + page;
+        }
+
+        
+        
+  		 // 특정 URL을 AJAX로 content-area에 로드하는 함수
+        function loadContent(url) {
+            $("#content-area").load(url);
+        } 
+    </script>
+	</div>
+</body>
+</html>

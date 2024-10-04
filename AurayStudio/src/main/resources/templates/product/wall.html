@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Auray Studio</title>
+		<link rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/index.css">
+		<link rel="stylesheet" href="/css/nav.css">
+		<link rel="stylesheet" href="/css/kitchen.css">
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<script th:src="@{/js/script.js}"></script>
+		<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 20px;
+}
+
+.content {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+h3 {
+	margin-right: 378px;
+	text-align: center;
+	font-weight: bolder;
+	margin-bottom: 8px;
+	font-size: 21px;
+}
+
+#wall-options {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 20px;
+	gap: 65px;
+}
+
+/* 개별 옵션 스타일 */
+.option {
+	text-align: center;
+	padding: 14px;
+	border: 1px solid #ccc;
+	background-color: #f5f5f5;
+	width: 171px;
+	border-radius: 10px;
+	transition: background-color 0.3s ease;
+	position: relative; /* 이미지와 텍스트 배치를 위한 relative 설정 */
+}
+
+/* 옵션 안의 링크 스타일 */
+.option a {
+	text-decoration: none;
+	color: #000;
+	font-size: 18px;
+	position: absolute;
+	top: 17%;
+	left: 50%;
+	transform: translate(-50%, -50%); /* 중앙 정렬 */
+	white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+/* 옵션 안의 이미지 스타일 */
+.option img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 10px;
+	margin-top: 37px;
+}
+
+/* 옵션 hover 시 배경색 변화 */
+.option:hover {
+	background-color: #ddd;
+}
+/* wall 옵션 위의 큰 이미지를 감싸는 div */
+#top-image-wrapper {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+	margin-top: 100px;
+}
+
+/* wall 옵션 위의 사진을 가로로 길게 설정 */
+#top-image {
+	width: 100%; /* 화면 너비에 맞게 설정 */
+	max-width: 460px; /* 최대 너비 제한 */
+	height: 200px; /* 비율 유지하면서 높이 자동 조절 */
+	object-fit: cover;
+}
+
+/* 설명 텍스트를 감싸는 div */
+#description-wrapper {
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto; /* 중앙 정렬 */
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+/* 설명 텍스트 스타일 */
+p {
+	font-size: 14px;
+	margin: 0;
+	margin-left: 17px;
+}
+</style>
+	</head>
+	<body>
+		<div th:replace="fragments/nav :: nav"></div>
+		<div layout:fragment="content">
+			<div id="top-image-wrapper">
+					<img id="top-image" th:src="@{/img/wall/stylewall/stylewall3.png}">
+				</div>
+			<h3>wall 옵션</h3>
+			<div id="description-wrapper">
+					<p>공간의 경계를 정의하고, 미적, 기능적 요소를 더해 인테리어 분위기를 완성하는 요소입니다.</p>
+				</div>
+				<div class="content">
+					<div id="wall-options">
+						<div class="option">
+							<a href="/product/wall/style">stylewall</a>
+								<img th:src="@{/img/wall/stylewall/stylewall.png}">
+						</div>
+						<div class="option">
+							<a href="/product/wall/panel">wallpanel</a>
+								<img th:src="@{/img/wall/wallpanel/wallpanel.png}">
+						</div>
+					</div>
+				</div>
+			</div>    
+	</body>
+</html>

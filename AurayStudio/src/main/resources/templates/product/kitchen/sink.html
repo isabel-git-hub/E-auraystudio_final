@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Auray Studio</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/kitchen.css">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+</head>
+<body>
+	<div th:replace="fragments/nav :: nav"></div>
+	<div layout:fragment="content">
+		<div class="main-content">
+			<aside class="sidebar">
+				<h2>부엌</h2>
+				<span class="custom-line"></span>
+				<ul>
+					<li><a href="/product/kitchen/echo">인조대리석</a></li>
+					<li><a href="/product/kitchen/vista">이스톤</a></li>
+					<li><a href="/product/kitchen/signature">포세린</a></li>
+					<li><a href="/product/kitchen/faucet">수전</a></li>
+					<li><a href="/product/kitchen/sink">싱크볼</a></li>
+					<li><a href="/product/kitchen/pantry">팬트리장,인출망장</a></li>
+					<li><a href="/product/kitchen/hood">후드</a></li>
+					<li><a href="/product/kitchen/etc">기타</a></li>
+				</ul>
+			</aside>
+
+			<main class="content-area">
+				<section>
+					<h2>싱크볼</h2>
+					<!-- Thymeleaf loop to iterate over the door items -->
+					<div class="products-container">
+						<div th:each="sink : ${kitchens}" class="door-item">
+							<div class="innergate-field">
+								<!-- 이미지 클릭 시 해당 제품의 상세 페이지로 이동 -->
+								<a th:href="@{'/product/kitchen/sink/' + ${sink.y_no}}"> 
+									<img th:src="@{'downloadImg/'+${sink.y_no}}" style="font-size: 12px;">
+								</a>
+							</div>
+							<div class="innergate-field">
+								<span th:text="${sink.y_no}">제품코드</span>&nbsp;&nbsp;<br> <span
+									th:text="${sink.y_name}" style="font-size: 12px;"></span>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+	</div>
+</body>
+</html>
+

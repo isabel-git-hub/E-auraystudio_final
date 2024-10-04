@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Auray Studio</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/kitchen.css">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 20px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column; /* 수직 정렬로 설정 */
+	align-items: center; /* 수평 중앙 정렬 */
+	position: relative; /* 화살표의 기준이 되는 요소 */
+}
+
+h3 {
+	margin-right: 586px;
+	text-align: center;
+	font-weight: bolder;
+	margin-bottom: 8px;
+}
+
+/* 스크롤 가능한 영역 전체를 감싸는 컨테이너 */
+.scrollable-wrapper {
+	position: relative;
+	width: 828px; /* 한 번에 4개의 옵션이 보이도록 설정 */
+	overflow: hidden; /* 스크롤바는 숨김 */
+	margin-top: 20px;
+}
+
+/* 스크롤되는 컨테이너: 항목들을 가로로 나열 */
+.scrollable-container {
+	display: flex;
+	gap: 20px;
+	scroll-behavior: smooth;
+	white-space: nowrap; /* 항목들이 한 줄에 나열되도록 설정 */
+	overflow: hidden; /* 스크롤바 숨김 */
+}
+
+/* 개별 옵션 스타일 */
+.option {
+	display: inline-block; /* 항목들이 한 줄에 나란히 배치되도록 설정 */
+	min-width: 150px; /* 각 옵션의 너비 */
+	text-align: center;
+	padding: 20px;
+	border: 1px solid #ccc;
+	background-color: #f5f5f5;
+	transition: background-color 0.3s ease;
+	border-radius: 10px;
+}
+
+/* 링크 스타일 */
+.option a {
+	text-decoration: none;
+	color: #000;
+	font-size: 18px;
+	display: block;
+}
+
+/* 이미지 스타일 */
+.option img {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	margin-bottom: 10px;
+}
+
+/* 화살표 스타일 */
+.arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 30px;
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 10px;
+	border-radius: 50%;
+	z-index: 10; /* 화살표가 다른 요소들 위에 표시되도록 설정 */
+}
+
+/* 왼쪽 화살표 */
+.left-arrow {
+	left: 336px; /* 화살표를 왼쪽 컨테이너 바깥으로 배치 */
+}
+
+/* 오른쪽 화살표 */
+.right-arrow {
+	right: 336px; /* 화살표를 오른쪽 컨테이너 바깥으로 배치 */
+}
+
+/* 옵션 hover 시 배경색 변화 */
+.option:hover {
+	background-color: #ddd;
+}
+
+/* 필름 옵션 위의 큰 이미지를 감싸는 div */
+#top-image-wrapper {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+	margin-top: 100px;
+}
+
+/* 필름 옵션 위의 사진을 가로로 길게 설정 */
+#top-image {
+	width: 100%; /* 화면 너비에 맞게 설정 */
+	max-width: 648px; /* 최대 너비 제한 */
+	height: 200px; /* 비율 유지하면서 높이 자동 조절 */
+	object-fit: cover;
+}
+
+/* 설명 텍스트를 감싸는 div */
+#description-wrapper {
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto; /* 중앙 정렬 */
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+/* 설명 텍스트 스타일 */
+p {
+	font-size: 16px;
+	margin: 0;
+	margin-left: 8px;
+}
+</style>
+</head>
+<body>
+		<div th:replace="fragments/nav :: nav"></div>
+		<div layout:fragment="content">
+			<div id="top-image-wrapper">
+					<img id="top-image" th:src="@{/img/film/인테리어 필름.png}">
+				</div>
+			<h3>필름 옵션</h3>
+			<div id="description-wrapper">
+					<p>벽, 가구, 문 등 다양한 표면에 손쉽게 적용하여 공간의 분위기를 변화시키는 경제적이고 실용적인 마감재입니다.</p>
+				</div>
+			<div class="content">
+				<span class="arrow left-arrow">&#10094;</span> <!-- 좌측 화살표 -->
+				<div class="scrollable-wrapper">
+					<div class="scrollable-container">
+						<div class="option">
+							<a href="/product/film/solid">솔리드</a> 
+								<img src="/img/film/솔리드.jpg">
+						</div>
+						<div class="option">
+							<a href="/product/film/metal">메탈</a>
+								<img src="/img/film/메탈.png">
+						</div>
+						<div class="option">
+							<a href="/product/film/wood">우드</a> 
+								<img src="/img/film/우드.png">
+						</div>
+						<div class="option">
+							<a href="/product/film/stone">스톤</a> 
+								<img src="/img/film/스톤.jpg">
+						</div>
+						<div class="option">
+							<a href="/product/film/textile">텍스타일</a> 
+								<img src="/img/film/텍스타일.png">
+						</div>
+						<div class="option">
+							<a href="/product/film/leather">레더</a> 
+								<img src="/img/film/레더.png">
+						</div>
+						<div class="option">
+							<a href="/product/film/interior-board">인테리어 보드</a> 
+								<img src="/img/film/인테리어 보드.jpg">
+						</div>
+					</div>
+				</div>
+				<span class="arrow right-arrow">&#10095;</span> <!-- 우측 화살표 -->
+			</div>
+		</div>
+	</body>
+</html>

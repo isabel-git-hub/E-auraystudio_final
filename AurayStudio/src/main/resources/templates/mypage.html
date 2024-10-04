@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auraystudio My Page</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/css/mypage.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/member.css">
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+
+    <!-- 타임리프 네비게이션 바 -->
+    <div th:replace="fragments/nav :: nav"></div>
+
+    <!-- 사이드바 -->
+    <div class="sidebar">
+        <h2>마이페이지</h2>
+        <span class="custom-line"></span>
+        <ul>
+            <!-- 게시판 메뉴 출력 -->
+            <li>
+                <a href="#" onclick="navigateToBoard(event, 1)">견적의뢰</a>
+            </li>
+            <li>
+                <a href="#" onclick="navigateToBoard(event, 2)">견적서</a>
+            </li>
+            <li>
+                <a href="#" onclick="navigateToBoard(event, 3)">시공후기</a>
+            </li>
+            
+            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
+            	<a href="/mypage/member">나의 정보</a>
+            </li>
+            
+			<!-- 관리자 전용 메뉴 -->
+			<li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+				<a href="/mypage/registration">제품 관리</a>
+			</li>
+
+			<li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+				<a href="/mypage/manage">회원 관리</a>
+			</li>
+        </ul>
+    </div>
+
+    <!-- 메인 컨텐츠 -->
+    <div class="content">
+        <!-- AJAX로 내용을 로드할 공간 -->
+        <div id="content-area">
+            <p style="margin-top:5%;">여기에 컨텐츠가 표시됩니다.</p>
+        </div>
+    </div>
+
+    <script>
+    
+        // 게시판 페이지로 이동하는 함수
+        function navigateToBoard(event, boardNo) {
+            event.preventDefault();
+            var page = 1; // 기본 페이지 번호 설정
+            window.location.href = "/board/" + boardNo + "/" + page;
+        }
+
+  		 // 특정 URL을 AJAX로 content-area에 로드하는 함수
+        function loadContent(url) {
+            $("#content-area").load(url);
+        } 
+    </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/member.css">
+    <script>
+        function formatPhoneNumber() {
+            var input = document.getElementById('telnumber');
+            var number = input.value.replace(/[^0-9]/g, ''); // 숫자 이외의 문자는 제거
+            if (number.length < 4) {
+                input.value = number;
+            } else if (number.length < 8) {
+                input.value = number.substr(0, 3) + '-' + number.substr(3);
+            } else {
+                input.value = number.substr(0, 3) + '-' + number.substr(3, 4) + '-' + number.substr(7);
+            }
+        }
+
+        // 페이지가 로드되면 전화번호 포맷을 적용
+        window.onload = function() {
+            formatPhoneNumber(); // 전화번호 필드 초기 값 포맷 적용
+        };
+        
+     // 기본 content에 "나의 정보" 페이지 로드
+	    $(document).ready(function() {
+	        loadContent('/mypage/member');
+	    });
+
+    // 게시판 페이지로 이동하는 함수
+    function navigateToBoard(event, boardNo) {
+        event.preventDefault();
+        var page = 1; // 기본 페이지 번호 설정
+        window.location.href = "/board/" + boardNo + "/" + page;
+    }
+
+    
+    
+		 // 특정 URL을 AJAX로 content-area에 로드하는 함수
+    function loadContent(url) {
+        $("#content-area").load(url);
+    } 
+    </script>
+</head>
+
+
+    <div layout:fragment="content" id="contents">
+        <!-- 타임리프 네비게이션 바 -->
+    <!-- 사이드바 -->
+    <div class="sidebar">
+        <h2>마이페이지</h2>
+        <span class="custom-line"></span>
+        <ul>
+            <!-- 게시판 메뉴 출력 -->
+            <li>
+                <a href="#" onclick="navigateToBoard(event, 1)">견적의뢰</a>
+            </li>
+            <li>
+                <a href="#" onclick="navigateToBoard(event, 2)">견적서</a>
+            </li>
+            <li>
+                <a href="#" onclick="navigateToBoard(event, 3)">시공후기</a>
+            </li>
+            
+            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
+            	<a href="/mypage/member">나의 정보</a>
+            </li>
+            
+			<!-- 관리자 전용 메뉴 -->
+			<li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+				<a href="/mypage/registration">제품 관리</a>
+			</li>
+
+			<li th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
+				<a href="/mypage/manage">회원 관리</a>
+			</li>
+        </ul>
+    </div>
+    
+        <div id="main">
+            <br>
+            <h1>회원정보</h1>
+            <br>
+            <form name="memberForm" action="member" method="post">
+                <table>
+                    <tr>
+                        <td><label for="userid">아이디</label></td>
+                        <td><input type="text" id="userid" name="userid" th:value="${member.userid}" readonly></td>
+                    </tr>
+                    <tr>
+                        <td><label for="userpwd">패스워드</label></td>
+                        <td><input type="password" id="userpw" name="userpw" th:value="${member.userpw}"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="userpwd">이름</label></td>
+                        <td><input type="text" id="username" name="username" th:value="${member.username}"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="birthdate">생년월일</label></td>
+                        <td th:text="${member.birthdate}"></td>
+                    </tr>
+                    <tr>  
+                        <td><label for="gender">성별</label></td>
+                        <td th:text="${member.gender == 'M' ? '남성' : '여성'}"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="telnumber">전화번호</label></td>
+                        <td><input type="text" id="telnumber" name="telnumber"
+							th:value="${member.telnumber}" onkeyup="formatPhoneNumber()"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="addr">주소</label></td>
+                        <td><input type="text" id="addr" name="addr" th:value="${member.addr}"></td>
+                    </tr>
+                </table>
+            </form>
+            <br>
+            <div class="button">
+                <input type="button" value="수정" onclick="checkMemberForm()">
+                <input type="button" value="탈퇴" onclick="location.href='/mypage/member/unregist'"> 
+                <input type="button" value="홈으로" onclick="location.href='/'">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

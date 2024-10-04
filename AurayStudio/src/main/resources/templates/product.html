@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Auray Studio</title>
+<link>
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/nav.css">
+<link rel="stylesheet" href="/css/index.css">
+<script th:src="@{https://code.jquery.com/jquery-latest.min.js}"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div th:replace="fragments/nav :: nav"></div>
+<!-- 	<header>제품보기</header>
+
+	<h3>
+		<a href="/">메인화면</a>
+	</h3> -->
+	<ul class="pdmenu">
+		<li class="list-style"><a href="#">키친</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/kitchen/echo">인조대리석</a></li>
+				<li class="list-style"><a href="/product/kitchen/vista">이스톤</a></li>
+				<li class="list-style"><a href="/product/kitchen/signature">포세린</a></li>
+				<li class="list-style"><a href="/product/kitchen/faucet">수전</a></li>
+				<li class="list-style"><a href="/product/kitchen/sink">싱크볼</a></li>
+				<li class="list-style"><a href="/product/kitchen/pantry">팬트리장,인출망장</a></li>
+				<li class="list-style"><a href="/product/kitchen/hood">후드</a></li>
+				<li class="list-style"><a href="/product/kitchen/etc">기타</a></li>
+			</ul></li>
+
+		<li class="list-style"><a href="#">붙박이장</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/built_in/casement">여닫이</a></li>
+				<li class="list-style"><a href="/product/built_in/dressing">드레스룸</a></li>
+				<li class="list-style"><a href="/product/built_in/entrancehall">현관장</a></li>
+				<li class="list-style"><a href="/product/built_in/cabinet">수납장</a></li>
+				<li class="list-style"><a href="/product/built_in/sliding">슬라이딩</a></li>
+			</ul></li>
+
+		<li class="list-style"><a href="#">도어</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/door/doorabs">ABS
+						도어</a></li>
+				<li class="list-style"><a href="/product/door/craftinesse">기능성
+						도어</a></li>
+				<li class="list-style"><a href="/product/door/hardware">도어
+						하드웨어</a></li>
+				<li class="list-style"><a href="/product/door/system">도어
+						시스템</a></li>
+			</ul></li>
+
+		<li class="list-style"><a href="#">중문</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/innergate/jungmun3">3연동
+						중문</a></li>
+				<li class="list-style"><a
+					href="/product/innergate/double_sided">양개중문</a></li>
+				<li class="list-style"><a href="/product/innergate/aluminum">슬림
+						알루미늄 중문</a></li>
+				<li class="list-style"><a href="/product/innergate/folding">폴딩도어</a></li>
+				<li class="list-style"><a href="/product/innergate/partition">파티션</a></li>
+			</ul></li>
+
+		<li class="list-style"><a href="#">바스</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/bath/essential">에센셜
+						바스</a></li>
+				<li class="list-style"><a href="/product/bath/timeless">타임리스
+						바스</a></li>
+				<li class="list-style"><a href="/product/bath/fixtures">바스
+						구성기기</a></li>
+			</ul></li>
+
+		<li class="list-style">
+		<!-- <a href="#">타일</a> -->
+			<ul class="submenu">
+				<!-- <li class="list-style"><a href="/product/tile/tile">타일</a></li> -->
+				<li class="list-style"><a href="/product/tile">타일</a></li>
+				<div class="dropdown-content">
+					<a href="/product/tile/natural">Natural</a> 
+					<a href="/product/tile/modern">Modern</a>
+					<a href="/product/tile/unique">Unique</a>
+				</div>
+			</ul></li>
+
+		<li class="list-style"><a href="#">창호</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/window/system">시스템창</a></li>
+				<li class="list-style"><a href="/product/window/general">일반창</a></li>
+			</ul></li>
+
+		<li class="list-style"><a href="#">몰딩</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/moulding/moulding">몰딩</a></li>
+			</ul></li>
+
+		<li class="list-style"><a href="#">타일</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/tile/tile">타일</a></li>
+			</ul></li>
+
+		<li class="list-style"><a href="#">Wall</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/wall/style">스타일월</a></li>
+				<li class="list-style"><a href="/product/wall/panel">월판넬</a></li>
+			</ul></li>
+
+		<li class="list-style"><a href="#">필름</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/film/solid">솔리드</a></li>
+				<li class="list-style"><a href="/product/film/metal">메탈</a></li>
+				<li class="list-style"><a href="/product/film/wood">우드</a></li>
+				<li class="list-style"><a href="/product/film/stone">스톤</a></li>
+				<li class="list-style"><a href="/product/film/textile">텍스타일</a></li>
+				<li class="list-style"><a href="/product/film/leather">레더</a></li>
+				<li class="list-style"><a href="/product/film/interior-board">인테리어
+						보드</a></li>
+			</ul></li>
+		<li class="list-style"><a href="#">바닥재</a>
+			<ul class="submenu">
+				<li><a href="/product/flooring/wood">원목마루</a></li>
+				<li><a href="/product/flooring/gang">강마루</a></li>
+				<li><a href="/product/flooring/sheet">시트</a></li>
+			</ul></li>
+		<li class="list-style"><a href="#">벽지</a>
+			<ul class="submenu">
+				<li><a href="/product/wallpaper/silk">실크</a></li>
+				<li><a href="/product/wallpaper/synthetic">합지</a></li>
+			</ul></li>
+			
+		<li class="list-style"><a href="#">페인트</a>
+			<ul class="submenu">
+				<li class="list-style"><a href="/product/paint/paint">페인트</a></li>
+				<li class="list-style"><a href="/product/paint/waterproof">방수페인트</a></li>
+				<li class="list-style"><a href="/product/paint/primer">프라이머</a></li>
+				<li class="list-style"><a href="/product/paint/epoxy">에폭시</a></li>
+				<li class="list-style"><a href="/product/paint/thinner">신나</a></li>
+				<li class="list-style"><a href="/product/paint/elastic">탄성코트</a></li>
+			</ul></li>
+			
+		<li class="list-style"><a href="#">단열재</a>
+			<ul class="submenu">
+				<li><a href="/product/insulation">PF 단열재</a></li>
+			</ul></li>
+	</ul>
+</body>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		// '제품보기' 클릭 시 이벤트 처리
+		var productMenu = document.getElementById('product-menu');
+		var productSubmenu = document.getElementById('product-submenu');
+
+		productMenu.addEventListener('click', function(event) {
+			event.preventDefault(); // 링크 기본 동작 방지
+			// 서브메뉴 보이기/숨기기 토글
+			if (productSubmenu.style.display === "block") {
+				productSubmenu.style.display = "none";
+			} else {
+				productSubmenu.style.display = "block";
+			}
+		});
+	});
+</script>
+</html>
